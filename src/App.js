@@ -1,8 +1,9 @@
 import React from "react";
+import FormPage from "./pages/formPage";
 
 const App = () => {
   return (
-    <h1>Hello React</h1>
+    <FormPage />
   );
 };
 
