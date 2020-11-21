@@ -9,8 +9,12 @@ const inputAddressesSlice = createSlice({
                     id: 0,
                     address: "",
                     removable: false,
+                    validationResult: null,
+                    validationMessage: null,
                 },
             ],
+
+        validationComplete: false,
     },
     reducers: {
         addAddress: state => {
@@ -19,6 +23,8 @@ const inputAddressesSlice = createSlice({
                 id,
                 address: "",
                 removable: true,
+                validationResult: null,
+                validationMessage: null,
             })
         },
 
@@ -29,11 +35,30 @@ const inputAddressesSlice = createSlice({
         removeAddress: (state, { payload: id }) => {
             state.inputAddresses = state.inputAddresses.filter(address => address.id !== id);
         },
+
+        validationStart: state => {
+            console.log("validationStart");
+        },
+
+        validationMake: (state, { payload }) => {
+            state.inputAddresses.find(address => address.id === payload.id).validationResult = payload.validationResult;
+            state.inputAddresses.find(address => address.id === payload.id).validationMessage = payload.validationMessage;
+        },
+
+        setValidationComplete: state => {
+            state.validationComplete = true;
+        }
     },
 });
 
 export const selectAddressState = state => state.inputAddresses.inputAddresses;
+export const selectAddressesValidationComplete = state => state.inputAddresses.validationComplete;
 
-export const { addAddress, changeAddress, removeAddress } = inputAddressesSlice.actions;
+export const { addAddress,
+    changeAddress,
+    removeAddress,
+    validationStart,
+    validationMake,
+    setValidationComplete } = inputAddressesSlice.actions;
 
 export default inputAddressesSlice.reducer;

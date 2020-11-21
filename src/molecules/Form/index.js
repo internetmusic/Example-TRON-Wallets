@@ -5,7 +5,7 @@ import AddCircleTwoTon from "@material-ui/icons/AddCircleTwoTone";
 import GetAppTwoToneIcon from '@material-ui/icons/GetAppTwoTone';
 import FieldSet from "../../atoms/FieldSet";
 import Button from "../../atoms/Button";
-import { addAddress, changeAddress, removeAddress, selectAddressState } from "../../slices/inputAdressesSlice";
+import { addAddress, changeAddress, removeAddress, validationStart, selectAddressState } from "../../slices/inputAdressesSlice";
 
 
 const Form = () => {
@@ -27,6 +27,8 @@ const Form = () => {
         <StyledForm className="example" noValidate autoComplete="off">
             {inputAddresses.map(address => (
                 <FieldSet
+                    error={address.validationResult === null ? false : !address.validationResult}
+                    errorMessage={address.validationResult === false ? address.validationMessage : null}
                     labelName="TRON Address"
                     onChange={event => { onInputChange(address.id, event) }}
                     onRemove={() => onInputRemove(address.id)}
@@ -38,7 +40,7 @@ const Form = () => {
             ))}
             <ButtonsSection>
                 <Button onClick={() => { dispatch(addAddress()) }} startIcon={<AddCircleTwoTon />}>Add new address</Button>
-                <Button startIcon={<GetAppTwoToneIcon />}>Download TRONs table</Button>
+                <Button onClick={() => { dispatch(validationStart()) }} startIcon={<GetAppTwoToneIcon />}>Download TRONs table</Button>
             </ButtonsSection>
         </StyledForm>
     );
