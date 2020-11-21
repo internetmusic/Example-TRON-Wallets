@@ -1,5 +1,6 @@
 import { takeLatest, select, call, put } from "redux-saga/effects"
 import { validationStart, selectAddressState, validationMake, setValidationComplete } from "../slices/inputAdressesSlice";
+import { fetchWallets } from "../slices/outputWalletsSlice";
 import { validateWithAPI } from "../helpers/apiClient";
 
 function* validationHandler() {
@@ -21,8 +22,8 @@ function* validationHandler() {
 
     if (validationCompleteCheck) {
         yield put(setValidationComplete());
+        yield put(fetchWallets());
     };
-
 };
 
 export function* validationSaga() {

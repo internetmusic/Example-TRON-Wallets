@@ -1,9 +1,23 @@
 import React from "react";
-import FormPage from "./pages/formPage";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import FormPage from "./pages/FormPage";
+import TablePage from "./pages/TablePage";
 
 const App = () => {
   return (
-    <FormPage />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/form">
+          <FormPage />
+        </Route>
+        <Route path="/table">
+          <TablePage />
+        </Route>
+        <Route>
+          <Redirect to="/form" />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

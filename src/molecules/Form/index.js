@@ -5,12 +5,21 @@ import AddCircleTwoTon from "@material-ui/icons/AddCircleTwoTone";
 import GetAppTwoToneIcon from '@material-ui/icons/GetAppTwoTone';
 import FieldSet from "../../atoms/FieldSet";
 import Button from "../../atoms/Button";
-import { addAddress, changeAddress, removeAddress, validationStart, selectAddressState } from "../../slices/inputAdressesSlice";
+import {
+    addAddress,
+    changeAddress,
+    removeAddress,
+    validationStart,
+    selectAddressState,
+    selectAddressesValidationComplete,
+} from "../../slices/inputAdressesSlice";
+import { Redirect } from "react-router-dom";
 
 
 const Form = () => {
     const dispatch = useDispatch();
     const inputAddresses = useSelector(selectAddressState);
+    const validationComplete = useSelector(selectAddressesValidationComplete);
 
     const onInputChange = (id, event) => {
         dispatch(changeAddress({
@@ -23,6 +32,9 @@ const Form = () => {
         dispatch(removeAddress(id));
     };
 
+    const goToTronTable = () => {
+        dispatch(validationStart());
+    }
     return (
         <StyledForm className="example" noValidate autoComplete="off">
             {inputAddresses.map(address => (
@@ -40,8 +52,9 @@ const Form = () => {
             ))}
             <ButtonsSection>
                 <Button onClick={() => { dispatch(addAddress()) }} startIcon={<AddCircleTwoTon />}>Add new address</Button>
-                <Button onClick={() => { dispatch(validationStart()) }} startIcon={<GetAppTwoToneIcon />}>Download TRONs table</Button>
+                <Button onClick={goToTronTable} startIcon={<GetAppTwoToneIcon />}>Download TRONs table</Button>
             </ButtonsSection>
+            {validationComplete && <Redirect to="/table"/>}
         </StyledForm>
     );
 };
