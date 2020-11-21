@@ -2,11 +2,11 @@ import React from "react";
 import { StyledFieldSet, FieldSetWrapper, RemoveCircle } from "./styled";
 import IconButton from "@material-ui/core/IconButton";
 
-const FieldSet = ({ labelName, removePossibility, isOnlyOne }) => {
+const FieldSet = ({ labelName, removePossibility, isOnlyOne, onChange, value, onRemove }) => {
     return (
         <FieldSetWrapper>
-            <StyledFieldSet label={labelName} variant="outlined" placeholder="enter TRON addres..." />
-            <IconButton style={{ visibility: `${!removePossibility && 'hidden'}`, display: `${isOnlyOne && 'none'}` }}>
+            <StyledFieldSet value={value} onChange={onChange} label={labelName} variant="outlined" placeholder="enter TRON addres..." />
+            <IconButton onClick={onRemove} style={{ visibility: `${!removePossibility && 'hidden'}`}}>
                 <RemoveCircle />
             </IconButton>
         </FieldSetWrapper>
