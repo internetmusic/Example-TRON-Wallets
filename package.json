@@ -2,7 +2,7 @@
   "name": "example-tron-wallets",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mateusz24polok.github.io/shopping-cart/Example-TRON-Wallets",
+  "homepage": "https://mateusz24polok.github.io/Example-TRON-Wallets",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
