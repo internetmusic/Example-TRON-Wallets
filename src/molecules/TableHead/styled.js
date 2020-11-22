@@ -1,11 +1,15 @@
 import styled, { css } from "styled-components";
-import ascendingIcon from "../../assets/images/ascendingIcon.png";
-import descendingIcon from "../../assets/images/descendingIcon.png";
 
 export const StyledHeadCell = styled.th`
     border: 1px solid #23B6DB;
     padding: 10px;
     text-align: center;
+`;
+
+export const StyledHeadCellWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const SortButton = styled.button`
@@ -28,13 +32,18 @@ export const SortButton = styled.button`
     `} 
 `;
 
-export const StyledButton = styled.button`
-    border: none;
-    background-color: unset;
+export const StyledButton = styled.div`
+    display: flex;
     cursor: pointer;
     font-size: 20px;
+    color: white;
 
     &:hover ${SortButton}{
         opacity: 1;
     }
+`;
+
+export const FilterInput = styled.input`
+    display: block;
+    margin: 0 auto;
 `;

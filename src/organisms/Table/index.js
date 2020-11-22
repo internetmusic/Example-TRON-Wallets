@@ -1,13 +1,17 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StyledTable, Title } from "./styled";
+import { StyledTable, Title, BackButton } from "./styled";
 import TableHead from "../../molecules/TableHead";
 import TableBody from "../../molecules/TableBody";
-import { selectWallets, sortWallets, selectSortConfig } from "../../slices/outputWalletsSlice";
+import { sortWallets, selectFilteredWallets, selectSortConfig } from "../../slices/outputWalletsSlice";
+import { resetAddresses } from "../../slices/inputAdressesSlice";
+import { useHistory } from "react-router-dom";
+import ArrowBackTwoToneIcon from '@material-ui/icons/ArrowBackTwoTone';
 
 const Table = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
-    const wallets = useSelector(selectWallets);
+    const filteredWallets = useSelector(selectFilteredWallets);
     const sortConfig = useSelector(selectSortConfig);
 
     const requestSort = key => {
@@ -20,6 +24,11 @@ const Table = () => {
         return ({ key, direction });
     }
 
+    const backToFormHandler = () => {
+        dispatch(resetAddresses());
+        history.replace("/form");
+    }
+
     return (
         <StyledTable>
             <Title>TRON Wallets</Title>
@@ -29,8 +38,20 @@ const Table = () => {
                 sortByCreateTime={() => { dispatch(sortWallets(requestSort("create_time"))) }}
                 sortByLastOperation={() => { dispatch(sortWallets(requestSort("latest_opration_time"))) }}
             />
-            <TableBody wallets={wallets} />
+            <TableBody wallets={filteredWallets} />
+            <BackButton
+                startIcon={<ArrowBackTwoToneIcon/>}
+                style={{
+                    position: "absolute",
+                    top: "-20px",
+                    left: 0,
+                    height: "40px",
+                }} onClick={backToFormHandler}
+            >
+                Back to form
+            </BackButton>
         </StyledTable>
+
     );
 };
 

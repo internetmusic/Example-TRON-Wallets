@@ -5,10 +5,13 @@ import { getWalletDetailsWithAPI } from "../helpers/apiClient";
 
 function* fetchWalletsHandler() {
     const addresses = yield select(selectAddressState);
-    yield console.log(addresses);
     for (const address of addresses) {
         const walletDetails = yield call(getWalletDetailsWithAPI, address.address);
-        yield console.log(walletDetails);
+
+        //Get balance 0 if it doesn't exist in fetched wallet
+        if (!walletDetails.balance) {
+            walletDetails.balance = 0;
+        }
         yield put(fetchWalletSuccess(walletDetails));
     };
 };

@@ -36,6 +36,20 @@ const inputAddressesSlice = createSlice({
             state.inputAddresses = state.inputAddresses.filter(address => address.id !== id);
         },
 
+        resetAddresses: state => {
+            state.inputAddresses = [
+                {
+                    id: 0,
+                    address: "",
+                    removable: false,
+                    validationResult: null,
+                    validationMessage: null,
+                },
+            ];
+
+            state.validationComplete = false;
+        },
+
         validationStart: state => {
             console.log("validationStart");
         },
@@ -59,6 +73,7 @@ export const { addAddress,
     removeAddress,
     validationStart,
     validationMake,
-    setValidationComplete } = inputAddressesSlice.actions;
+    setValidationComplete,
+    resetAddresses } = inputAddressesSlice.actions;
 
 export default inputAddressesSlice.reducer;

@@ -12,7 +12,7 @@ const TableBody = ({ wallets }) => {
         <tbody>
             {wallets ? (
                 wallets.map((wallet, index) => (
-                    <tr>
+                    <tr key={wallet.address}>
                         <StyledCell>{index + 1}</StyledCell>
                         <StyledCell>{wallet.address}</StyledCell>
                         <StyledCell>{wallet.balance}</StyledCell>
