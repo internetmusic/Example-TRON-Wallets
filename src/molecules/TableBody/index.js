@@ -3,6 +3,8 @@ import { StyledCell } from "./styled";
 
 const TableBody = ({ wallets }) => {
 
+    //getMyDateString is function which change format of miliseconds from 1970 (it goes from API) to LocalDateString form
+
     const getMyDateString = (myDate) => {
         const date = new Date(myDate);
         return date.toLocaleDateString();

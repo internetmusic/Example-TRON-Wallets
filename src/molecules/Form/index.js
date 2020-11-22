@@ -1,8 +1,9 @@
 import React from "react";
-import { StyledForm, ButtonsSection } from "./styled";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import AddCircleTwoTon from "@material-ui/icons/AddCircleTwoTone";
 import GetAppTwoToneIcon from '@material-ui/icons/GetAppTwoTone';
+import { StyledForm, ButtonsSection } from "./styled";
 import FieldSet from "../../atoms/FieldSet";
 import Button from "../../atoms/Button";
 import {
@@ -13,13 +14,16 @@ import {
     selectAddressState,
     selectAddressesValidationComplete,
 } from "../../slices/inputAdressesSlice";
-import { Redirect } from "react-router-dom";
 
 
 const Form = () => {
+    //take variables from libraries and state
+
     const dispatch = useDispatch();
     const inputAddresses = useSelector(selectAddressState);
     const validationComplete = useSelector(selectAddressesValidationComplete);
+
+    // onInputChange dispatch every change of one of inputs to state 
 
     const onInputChange = (id, event) => {
         dispatch(changeAddress({
@@ -28,13 +32,19 @@ const Form = () => {
         }));
     };
 
+    // onInputRemove dispatch every remove of input itself to state 
+
     const onInputRemove = id => {
         dispatch(removeAddress(id));
     };
 
+    // goToTronTable starts validation of form and when validation is complete it change validationComplete in state to true
+    // which redner Redirect in component below to page with table
+
     const goToTronTable = () => {
         dispatch(validationStart());
     }
+
     return (
         <StyledForm className="example" noValidate autoComplete="off">
             {inputAddresses.map(address => (
@@ -51,10 +61,20 @@ const Form = () => {
                 />
             ))}
             <ButtonsSection>
-                <Button onClick={() => { dispatch(addAddress()) }} startIcon={<AddCircleTwoTon />}>Add new address</Button>
-                <Button onClick={goToTronTable} startIcon={<GetAppTwoToneIcon />}>Download TRONs table</Button>
+                <Button
+                    onClick={() => { dispatch(addAddress()) }}
+                    startIcon={<AddCircleTwoTon />}
+                >
+                    Add new address
+                    </Button>
+                <Button
+                    onClick={goToTronTable}
+                    startIcon={<GetAppTwoToneIcon />}
+                >
+                    Download TRONs table
+                    </Button>
             </ButtonsSection>
-            {validationComplete && <Redirect to="/table"/>}
+            {validationComplete && <Redirect to="/table" />}
         </StyledForm>
     );
 };

@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
+import FilterListIcon from '@material-ui/icons/FilterList';
+import { withStyles } from '@material-ui/core/styles';
 
 export const StyledHeadCell = styled.th`
-    border: 1px solid #23B6DB;
+    border: 1px solid ${({theme})=>theme.colors.tableHeadCell};
     padding: 10px;
     text-align: center;
 `;
@@ -13,11 +15,9 @@ export const StyledHeadCellWrapper = styled.div`
 `;
 
 export const SortButton = styled.button`
-    width: 30px;
-    height: 30px;
     background-color: unset;
     border: none;
-    color: white;
+    color: ${({theme})=>theme.colors.tableHeadText};
     opacity: 0;
     transition: all 0.15s ease-in-out;
     cursor: pointer;
@@ -36,10 +36,14 @@ export const StyledButton = styled.div`
     display: flex;
     cursor: pointer;
     font-size: 20px;
-    color: white;
+    color: ${({theme})=>theme.colors.tableHeadText};
 
     &:hover ${SortButton}{
         opacity: 1;
+    }
+
+    @media(max-width: ${({theme})=>theme.breakPoints.tabletBreakPoint}){
+        font-size: 12px;
     }
 `;
 
@@ -47,3 +51,9 @@ export const FilterInput = styled.input`
     display: block;
     margin: 0 auto;
 `;
+
+export const FilterListButton = withStyles({
+    root: {
+        color: "white",
+    }
+})(FilterListIcon);

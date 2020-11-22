@@ -51,7 +51,7 @@ const inputAddressesSlice = createSlice({
         },
 
         validationStart: state => {
-            console.log("validationStart");
+
         },
 
         validationMake: (state, { payload }) => {
