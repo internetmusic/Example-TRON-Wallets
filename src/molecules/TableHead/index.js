@@ -13,10 +13,6 @@ const TableHead = ({ sortByAddress, sortByBalance, sortByCreateTime, sortByLastO
     const dispatch = useDispatch();
     const sortConfig = useSelector(selectSortConfig);
 
-    //prevFilterBy give previous value of filterBy from filterConfig
-
-    const prevFilterBy = usePrevious(filterConfig.filterBy);
-
     //defined of filterConfig state variable which should be use to hold filter configuration parameters
     //filter indicates if filtering is on or off; filterBy indicates by which wallets has been filtering
 
@@ -24,6 +20,10 @@ const TableHead = ({ sortByAddress, sortByBalance, sortByCreateTime, sortByLastO
         filter: null,
         filterBy: null
     });
+
+    //prevFilterBy give previous value of filterBy from filterConfig
+
+    const prevFilterBy = usePrevious(filterConfig.filterBy);
 
     //filterConfigHandling - define handlig of filterConfig change, it should toggle filter when we want to
     //turn off or turn on filtering in one TRON table columns, but when we change filtering from one column
