@@ -5,7 +5,7 @@ import TablePage from "./pages/TablePage";
 
 const App = () => {
   return (
-    <BrowserRouter basename="Example-TRON-Wallets">
+    <BrowserRouter basename="/Example-TRON-Wallets">
       <Switch>
         <Route path="/form">
           <FormPage />
