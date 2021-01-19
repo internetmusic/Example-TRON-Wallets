@@ -1,6 +1,6 @@
 # Example TRON Wallets
 
-This is a simple app for download you example TRON Wallets
+This is a simple app for download data about your example TRON Wallets. This simple app was one of my recruitment tasks that I passed through successfully.
 
 ![Logo](public/logo_big.png)
 
@@ -17,6 +17,16 @@ https://mateusz24polok.github.io/Example-TRON-Wallets
 1. Put your TRON wallets addresses into start form. You can dynamicly add and remove input field.
 2. Click "Download TRONs Table" and if you put your wallets correctly you should see table of your wallets.
 3. Now You can dynamicly sort or filter your wallets.
+
+<br>
+
+## Example TRON Wallets to use (base58 format):
+
+- TGmcz6UMqeTUoNryw4LcPeTWmo1DWrxRUK
+- TSFKJsiJrt6bUTmxS1F1Fmv6UUYdGVB9Ws
+- TN1nWMYqhnqrBXPMH1ECYouVaafRkYxhNb
+- TCFQhzJgXJnn56sqJV38H8c5YAwELZugvz
+- TUv34RrPNY2qTNHZ9q4mLc9AuUu9Tpy3Jg
 
 <br>
 
